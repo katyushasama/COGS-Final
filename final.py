@@ -2,8 +2,8 @@ import time
 import copy
 import sys
 '''
-This Project is a project using minimax algogrithm to run tic-tac-toc
-Minimax Algorithm is a like BFS algorithm
+This Project is a project using minimax algogrithm to run tic-tac-toe
+Minimax Algorithm is a DFS algorithm
 reference:
 https://en.wikipedia.org/wiki/Minimax
 https://github.com/CodingTrain/website/tree/main/CodingChallenges/CC_154_Tic_Tac_Toe_Minimax/P5
@@ -66,7 +66,7 @@ def check_win(grid):
 def check_move(grid):
 	'''
 	This is the chech move function
-	this function will use the recursion fucntion call BFS_minimax
+	this function will use the recursion fucntion call DFS_minimax
 	to calculate the best move for AI
 	and return the best move
 	'''
@@ -77,7 +77,7 @@ def check_move(grid):
 			if grid[i][j] == " ":
 				temp_grid = copy.deepcopy(grid)
 				temp_grid[i][j] = "O"
-				temp_score = BFS_minimax(temp_grid,False)
+				temp_score = DFS_minimax(temp_grid,False)
 				#print(temp_score)
 				if best_score < temp_score:
 					best_score = temp_score
@@ -85,7 +85,7 @@ def check_move(grid):
 	return points
 
 
-def BFS_minimax(grid,AI):
+def DFS_minimax(grid,AI):
 	'''
 	This is the minimax recursion function
 	It is a like-BFS function
@@ -108,7 +108,7 @@ def BFS_minimax(grid,AI):
 			for j in range(len(grid[i])):
 				if grid[i][j] == " ":
 					grid[i][j] = "O"
-					temp_score = BFS_minimax(grid,False)
+					temp_score = DFS_minimax(grid,False)
 					grid[i][j] = " "
 					best_score = max(temp_score,best_score)
 		return best_score
@@ -118,7 +118,7 @@ def BFS_minimax(grid,AI):
 			for j in range(len(grid[i])):
 				if grid[i][j] == " ":
 					grid[i][j] = "X"
-					temp_score = BFS_minimax(grid,True)
+					temp_score = DFS_minimax(grid,True)
 					grid[i][j] = " "
 					best_score = min(temp_score,best_score)
 		return best_score
